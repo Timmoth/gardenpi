@@ -1,6 +1,4 @@
 from apscheduler.schedulers.blocking import BlockingScheduler
-import subprocess
-import sys
 
 
 def runJob():
