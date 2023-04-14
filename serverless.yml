@@ -33,10 +33,11 @@ custom:
       "/gardenpi-s3-endpoint": "http://localhost:4569"
       "/gardenpi-s3-accessKeyId": "S3RVER"
       "/gardenpi-s3-secretAccessKey": "S3RVER"
-
+      "/gardenpi-s3-bucket": "local-bucket"
   s3:
     host: localhost
     directory: /tmp
+    buckets: local-bucket
 
 plugins:
   - serverless-offline-ssm
@@ -55,4 +56,4 @@ functions:
       s3_endpoint: ${ssm:/gardenpi-s3-endpoint}
       s3_accessKeyId: ${ssm:/gardenpi-s3-accessKeyId}
       s3_secretAccessKey: ${ssm:/gardenpi-s3-secretAccessKey}
-      s3_bucket: gardenpi-images
+      s3_bucket: ${ssm:/gardenpi-s3-bucket}
