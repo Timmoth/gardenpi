@@ -1,0 +1,5 @@
+services:
+  image-upload:
+    path: imageUpload
+  image-download:
+    path: imageDownload
