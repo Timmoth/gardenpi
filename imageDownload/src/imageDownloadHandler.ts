@@ -38,6 +38,8 @@ export const image = async (
   }
 
   let lastImageKey = response.Contents[0].Key;
+  console.log(`Fetching image: '${lastImageKey}'`);
+
   let getResponse = await client.send(
     new GetObjectCommand({
       Bucket: s3_bucket,

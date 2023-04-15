@@ -15,7 +15,7 @@ retval, buffer = cv2.imencode('.png', frame)
 jpg_as_text = base64.b64encode(buffer).decode("utf-8")
 cap.release()
 
-url = 'https://r72ly3ueca.execute-api.eu-west-1.amazonaws.com/dev/image'
+url = 'https://7kc2vxit8l.execute-api.eu-west-1.amazonaws.com/dev/image'
 myobj = {'imageData': jpg_as_text}
 
 x = requests.post(url, json = myobj)
