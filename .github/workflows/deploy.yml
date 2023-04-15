@@ -20,7 +20,13 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: npm ci
+        working-directory: ./imageUpload
       - run: npm run compile
+        working-directory: ./imageUpload
+      - run: npm ci
+        working-directory: ./imageDownload
+      - run: npm run compile
+        working-directory: ./imageDownload
       - name: serverless deploy
         uses: serverless/github-action@v3.1
         with:
