@@ -1,8 +1,14 @@
 version: "3"
 services:
-  helloworld:
+  image-upload:
     build:
-      context: .
+      context: ./imageUpload
       dockerfile: Dockerfile
     ports:
       - "3000:3000"
+  image-download:
+    build:
+      context: ./imageDownload
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3000"

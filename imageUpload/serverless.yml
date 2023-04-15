@@ -5,7 +5,7 @@
 # uses to deploy your code to your provider of choice
 
 # The `service` block is the name of the service
-service: gardenpi
+service: gardenpi-image-upload
 
 frameworkVersion: "3"
 
@@ -47,7 +47,7 @@ plugins:
 # The `functions` block defines what code to deploy
 functions:
   image:
-    handler: build/imageHandler.image
+    handler: build/imageUploadHandler.image
     events:
       - http:
           path: image

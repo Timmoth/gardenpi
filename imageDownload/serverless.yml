@@ -1,0 +1,62 @@
+# Welcome to serverless. Read the docs
+# https://serverless.com/framework/docs/
+
+# Serverless.yml is the configuration the CLI
+# uses to deploy your code to your provider of choice
+
+# The `service` block is the name of the service
+service: gardenpi-image-download
+
+frameworkVersion: "3"
+
+# The `provider` block defines where your service will be deployed
+provider:
+  name: aws
+  runtime: nodejs14.x
+  region: eu-west-1
+  stage: ${opt:stage, 'dev'}
+  apiGateway:
+    binaryMediaTypes:
+      - "*/*"
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - "ssm:*"
+        - "ssm:GetParameter"
+        - "ssm:GetParameters"
+        - "ssm:GetParametersByPath"
+      Resource:
+        - "*"
+
+custom:
+  serverless-offline-ssm:
+    stages:
+      - local
+    ssm:
+      "/gardenpi-s3-endpoint": "http://localhost:4569"
+      "/gardenpi-s3-accessKeyId": "S3RVER"
+      "/gardenpi-s3-secretAccessKey": "S3RVER"
+      "/gardenpi-s3-bucket": "local-bucket"
+  s3:
+    host: localhost
+    directory: /tmp
+    buckets: local-bucket
+
+plugins:
+  - serverless-offline-ssm
+  - serverless-offline
+  - serverless-s3-local
+
+# The `functions` block defines what code to deploy
+functions:
+  image:
+    handler: build/imageDownloadHandler.image
+    events:
+      - http:
+          path: image
+          method: get
+    environment:
+      s3_endpoint: ${ssm:/gardenpi-s3-endpoint}
+      s3_accessKeyId: ${ssm:/gardenpi-s3-accessKeyId}
+      s3_secretAccessKey: ${ssm:/gardenpi-s3-secretAccessKey}
+      s3_bucket: ${ssm:/gardenpi-s3-bucket}
