@@ -9,7 +9,7 @@ frame = cv2.imread(os.path.join(image_folder, images[0]))
 height, width, layers = frame.shape
 
 video = cv2.VideoWriter(video_name, 0, 15, (width,height))
-frameCount = images.count()
+frameCount = images.count
 print(f"frames: '{frameCount}'")
 
 frameIndex = 0
