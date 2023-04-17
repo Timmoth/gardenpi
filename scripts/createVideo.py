@@ -2,13 +2,14 @@ import cv2
 import os
 
 image_folder = './'
-video_name = 'video.avi'
+video_name = 'video.mp4'
 
 images = [img for img in os.listdir(image_folder) if img.endswith(".jpg")]
 frame = cv2.imread(os.path.join(image_folder, images[0]))
 height, width, layers = frame.shape
 
-video = cv2.VideoWriter(video_name, 0, 15, (width,height))
+fourcc = cv2.VideoWriter_fourcc(*'h264')
+video = cv2.VideoWriter(video_name, fourcc, 15, (width,height))
 frameCount = images.count
 print(f"frames: '{frameCount}'")
 
