@@ -13,7 +13,8 @@ frameCount = images.count
 print(f"frames: '{frameCount}'")
 
 frameIndex = 0
-for image in images.sort():
+sortedFrames = sorted(images)
+for image in sortedFrames:
     print(f"stitching frame: '{image}' '{frameIndex}'")
     frameIndex += 1
     video.write(cv2.imread(os.path.join(image_folder, image)))
