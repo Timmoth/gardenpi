@@ -19,9 +19,8 @@ while(True):
     print(number_of_white_pix)
     # Display the resulting frame
     if(number_of_white_pix > 2000):
-      timeStamp = time.time()
-      cv2.imwrite(f"{timeStamp}.jpg", frame2)   
-      cv2.imshow('frame', frame2)
+      timestr = time.strftime("%Y%m%d-%H%M%S")
+      cv2.imwrite(f"{timestr}.jpg", frame2)   
       time.sleep(0.5)
       
     # the 'q' button is set as the
