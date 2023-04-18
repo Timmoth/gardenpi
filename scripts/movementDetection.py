@@ -25,11 +25,12 @@ while(True):
       timestamp = time.time()
       date = time.strftime("%Y-%m-%d")
       dir = os.path.join(date)
-      filePath = os.path.join(dir, date,  f"{timestamp}.jpg")
+      filePath = os.path.join(dir, f"{timestamp}.jpg")
 
       if(not os.path.exists(dir)):
+         print(f"Creating dir: '{dir}'")
          os.makedirs(dir)
 
-      print(f"Write: {filePath}")
+      print(f"Write image: '{filePath}'")
       cv2.imwrite(filePath, frame2)   
       time.sleep(0.5)
