@@ -19,7 +19,6 @@ while(True):
     oldFrame = frame2
 
     number_of_white_pix = np.sum(thresh_bin == 255)
-    print(number_of_white_pix)
     # Display the resulting frame
     if(number_of_white_pix > 2500):
       timestamp = time.time()
@@ -28,9 +27,11 @@ while(True):
       filePath = os.path.join(dir, f"{timestamp}.jpg")
 
       if(not os.path.exists(dir)):
-         print(f"Creating dir: '{dir}'")
+         print(f"Create dir '{dir}'")
          os.makedirs(dir)
 
-      print(f"Write image: '{filePath}'")
+      print(f"Large change '{number_of_white_pix}' write image '{filePath}'")
       cv2.imwrite(filePath, frame2)   
       time.sleep(0.5)
+    else:
+      print(f"Small change '{number_of_white_pix}'")
