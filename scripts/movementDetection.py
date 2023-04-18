@@ -1,6 +1,7 @@
 import cv2
 import numpy as np
 import time
+import os
 
 cap = cv2.VideoCapture(0)  # video capture source camera (Here webcam of laptop)
 
@@ -23,7 +24,12 @@ while(True):
     if(number_of_white_pix > 2500):
       timestamp = time.time()
       date = time.strftime("%Y-%m-%d")
-      filePath = f"./{date}/{timestamp}.jpg"
+      dir = os.path.join(date)
+      filePath = os.path.join(dir, date,  f"{timestamp}.jpg")
+
+      if(not os.path.exists(dir)):
+         os.makedirs(dir)
+
       print(f"Write: {filePath}")
       cv2.imwrite(filePath, frame2)   
       time.sleep(0.5)
