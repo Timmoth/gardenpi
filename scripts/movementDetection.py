@@ -33,5 +33,7 @@ while(True):
       print(f"Large change '{number_of_white_pix}' write image '{filePath}'")
       cv2.imwrite(filePath, frame2)   
       time.sleep(0.5)
+      ret, frame2 = cap.read()
+      oldFrame = frame2
     else:
       print(f"Small change '{number_of_white_pix}'")
