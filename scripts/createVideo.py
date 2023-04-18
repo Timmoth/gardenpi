@@ -2,11 +2,18 @@ import cv2
 import os
 import argparse
 
+def dir_path(string):
+    if os.path.isdir(string):
+        return string
+    else:
+        raise NotADirectoryError(string)
+
 parser = argparse.ArgumentParser()
-parser.add_argument("--dir", action="store_true",
+parser.add_argument("--dir", type=dir_path,
                     help="image dir")
+
 args = parser.parse_args()
-imageDir = args.imageDir
+imageDir = args.dir
 
 video_name = 'video.mp4'
 
