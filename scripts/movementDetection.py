@@ -20,8 +20,10 @@ while(True):
     number_of_white_pix = np.sum(thresh_bin == 255)
     print(number_of_white_pix)
     # Display the resulting frame
-    if(number_of_white_pix > 2000):
-      timestr = time.strftime("%Y%m%d-%H%M%S")
-      cv2.imwrite(f"{timestr}.jpg", frame2)   
+    if(number_of_white_pix > 2500):
+      timestamp = time.time()
+      date = time.strftime("%Y-%m-%d")
+      filePath = f"./{date}/{timestamp}.jpg"
+      print(f"Write: {filePath}")
+      cv2.imwrite(filePath, frame2)   
       time.sleep(0.5)
-      print(f"Write: {timestr}")
