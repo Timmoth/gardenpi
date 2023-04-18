@@ -1,6 +1,7 @@
 import cv2
 import os
 import argparse
+import time
 
 def dir_path(string):
     if os.path.isdir(string):
@@ -15,7 +16,8 @@ parser.add_argument("--dir", type=dir_path,
 args = parser.parse_args()
 imageDir = args.dir
 
-video_name = 'video.mp4'
+timestamp = time.time()
+video_name = f'{timestamp}.mp4'
 
 images = [img for img in os.listdir(imageDir) if img.endswith(".jpg")]
 frame = cv2.imread(os.path.join(imageDir, images[0]))
