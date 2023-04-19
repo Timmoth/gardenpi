@@ -1,10 +1,24 @@
 import cv2
 import os
-import time
 from datetime import date, timedelta
+import argparse
 
-yesterday = date.today() - timedelta(days=1)
-dir = os.path.join(os.path.expanduser('~'), yesterday.strftime("%Y-%m-%d"))
+def dir_path(string):
+    if os.path.isdir(string):
+        return string
+    else:
+        raise NotADirectoryError(string)
+
+parser = argparse.ArgumentParser()
+parser.add_argument("--dir", type=dir_path,
+                    help="image dir")
+
+args = parser.parse_args()
+if args.dir is not None:
+    dir = args.dir
+else:
+    yesterday = date.today() - timedelta(days=1)
+    dir = os.path.join(os.path.expanduser('~'), yesterday.strftime("%Y-%m-%d"))
 
 if(not os.path.exists(dir)):
     print(f"dir '{dir}' does not exist.")
