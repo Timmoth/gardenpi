@@ -7,7 +7,11 @@ After=network.target network-online.target
 Type=simple
 Restart=always
 ExecStart=/bin/bash /home/gardenpi/gardenpi/scripts/start.sh
-ExecStart=/bin/bash /home/gardenpi/gardenpi/scripts/stop.sh
+ExecStop=/bin/bash /home/gardenpi/gardenpi/scripts/stop.sh
+RestartSec=5
+TimeoutSec=60
+RuntimeMaxSec=infinity
+PIDFile=/tmp/movementDetection.pid
 
 [Install]
 WantedBy=multi-user.target
