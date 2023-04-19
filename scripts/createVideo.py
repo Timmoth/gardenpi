@@ -1,24 +1,19 @@
 import cv2
 import os
-import argparse
+import time
+from datetime import date, timedelta
 
-def dir_path(string):
-    if os.path.isdir(string):
-        return string
-    else:
-        raise NotADirectoryError(string)
+yesterday = date.today() - timedelta(days=1)
+dir = os.path.join(os.path.expanduser('~'), yesterday.strftime("%Y-%m-%d"))
 
-parser = argparse.ArgumentParser()
-parser.add_argument("--dir", type=dir_path,
-                    help="image dir")
+if(not os.path.exists(dir)):
+    print(f"dir '{dir}' does not exist.")
+    quit()
 
-args = parser.parse_args()
-imageDir = args.dir
+video_name = os.path.join(dir, 'video.mp4')
 
-video_name = os.path.join(imageDir, 'video.mp4')
-
-images = [img for img in os.listdir(imageDir) if img.endswith(".jpg")]
-frame = cv2.imread(os.path.join(imageDir, images[0]))
+images = [img for img in os.listdir(dir) if img.endswith(".jpg")]
+frame = cv2.imread(os.path.join(dir, images[0]))
 height, width, layers = frame.shape
 
 fourcc = cv2.VideoWriter_fourcc(*'h264')
@@ -31,7 +26,7 @@ sortedFrames = sorted(images)
 for image in sortedFrames:
     print(f"stitching frame: '{image}' '{frameIndex}'")
     frameIndex += 1
-    video.write(cv2.imread(os.path.join(imageDir, image)))
+    video.write(cv2.imread(os.path.join(dir, image)))
 
 cv2.destroyAllWindows()
 video.release()

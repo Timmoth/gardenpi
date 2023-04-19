@@ -1,0 +1,16 @@
+[Unit]
+Description=createVideo service
+Wants=network-online.target
+After=network.target network-online.target
+
+[Service]
+Type=simple
+User=gardenpi
+ExecStart=/bin/bash /home/gardenpi/gardenpi/scripts/createVideo.sh
+
+[Timer]
+OnCalendar=daily
+Persistent=true
+
+[Install]
+WantedBy=timers.target
