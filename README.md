@@ -7,6 +7,9 @@ sudo apt-get install build-essential cmake pkg-config libjpeg-dev libtiff5-dev l
 pip install --upgrade pip setuptools wheel   
 sudo apt-get install python3-opencv   
 git clone https://github.com/Timmoth/gardenpi.git
-cd gardenpi/
-python3 ./script.py
+cd gardenpi/scripts
+sudo cp ./movementDetection.service /etc/systemd/system/movementDetection.service
+sudo systemctl daemon-reload 
+sudo systemctl enable movementDetection.service
+sudo systemctl start movementDetection.service  
 ```
