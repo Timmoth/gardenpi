@@ -1,0 +1,12 @@
+[Unit]
+Description=movementDetection service
+Wants=network-online.target
+After=network.target network-online.target
+
+[Service]
+Type=simple
+Restart=always
+ExecStart=/usr/bin/python3 /home/gardenpi/gardenpi/scripts/movementDetection.py
+
+[Install]
+WantedBy=multi-user.target
