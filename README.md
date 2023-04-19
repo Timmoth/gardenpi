@@ -9,7 +9,11 @@ sudo apt-get install python3-opencv
 git clone https://github.com/Timmoth/gardenpi.git
 cd gardenpi/scripts
 sudo cp ./movementDetection.service /etc/systemd/system/movementDetection.service
+sudo cp ./createVideo.service /etc/systemd/system/createVideo.service
+
 sudo systemctl daemon-reload 
 sudo systemctl enable movementDetection.service
+sudo systemctl enable createVideo.service
+
 sudo systemctl start movementDetection.service  
 ```
