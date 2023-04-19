@@ -11,12 +11,13 @@ if(not os.path.exists(dir)):
     quit()
 
 video_name = os.path.join(dir, 'video.mp4')
+print(f"creating video '{video_name}'.")
 
 images = [img for img in os.listdir(dir) if img.endswith(".jpg")]
 frame = cv2.imread(os.path.join(dir, images[0]))
 height, width, layers = frame.shape
 
-fourcc = cv2.VideoWriter_fourcc(*'h264')
+fourcc = cv2.VideoWriter_fourcc(*'X264')
 video = cv2.VideoWriter(video_name, fourcc, 15, (width,height))
 frameCount = images.count
 print(f"frames: '{frameCount}'")
@@ -24,9 +25,10 @@ print(f"frames: '{frameCount}'")
 frameIndex = 0
 sortedFrames = sorted(images)
 for image in sortedFrames:
-    print(f"stitching frame: '{image}' '{frameIndex}'")
+    imagePath = os.path.join(dir, image)
+    print(f"stitching frame: '{imagePath}' '{frameIndex}'")
     frameIndex += 1
-    video.write(cv2.imread(os.path.join(dir, image)))
+    video.write(cv2.imread(imagePath))
 
 cv2.destroyAllWindows()
 video.release()
