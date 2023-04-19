@@ -6,6 +6,7 @@ After=network.target network-online.target
 [Service]
 Type=simple
 Restart=always
+User=gardenpi
 ExecStart=/bin/bash /home/gardenpi/gardenpi/scripts/start.sh
 ExecStop=/bin/bash /home/gardenpi/gardenpi/scripts/stop.sh
 RestartSec=5
