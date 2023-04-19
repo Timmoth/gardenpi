@@ -8,10 +8,6 @@ Type=simple
 Restart=always
 ExecStart=/bin/bash /home/gardenpi/gardenpi/scripts/start.sh
 ExecStart=/bin/bash /home/gardenpi/gardenpi/scripts/stop.sh
-RestartSec=5
-TimeoutSec=60
-RuntimeMaxSec=infinity
-PIDFile=/tmp/mydaemon.pid
 
 [Install]
 WantedBy=multi-user.target
