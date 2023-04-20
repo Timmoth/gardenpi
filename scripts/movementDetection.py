@@ -21,8 +21,8 @@ while(True):
   
     diff = cv2.absdiff(oldFrame, frame2)
     diff_gray = cv2.cvtColor(diff, cv2.COLOR_BGR2GRAY)
-    diff_blur = cv2.GaussianBlur(diff_gray, (5,5), 0)
-    _, thresh_bin = cv2.threshold(diff_blur, 30, 255, cv2.THRESH_BINARY)
+    diff_blur = cv2.GaussianBlur(diff_gray, (20,20), 0)
+    _, thresh_bin = cv2.threshold(diff_blur, 40, 255, cv2.THRESH_BINARY)
     oldFrame = frame2
 
     number_of_white_pix = np.sum(thresh_bin == 255)
