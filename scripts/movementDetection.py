@@ -21,7 +21,7 @@ while(True):
   
     diff = cv2.absdiff(oldFrame, frame2)
     diff_gray = cv2.cvtColor(diff, cv2.COLOR_BGR2GRAY)
-    diff_blur = cv2.GaussianBlur(diff_gray, (15,15), cv2.BORDER_DEFAULT)
+    diff_blur = cv2.GaussianBlur(diff_gray, (25,25), cv2.BORDER_DEFAULT)
     _, thresh_bin = cv2.threshold(diff_blur, 40, 255, cv2.THRESH_BINARY)
     oldFrame = frame2
 
