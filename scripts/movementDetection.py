@@ -10,7 +10,7 @@ parser.add_argument("--display", action="store_true",
 args = parser.parse_args()
 displayImage = args.display
 
-cap = cv2.VideoCapture(0)  # video capture source camera (Here webcam of laptop)
+cap = cv2.VideoCapture(0)
 
 ret, frame1 = cap.read()
 
@@ -21,7 +21,7 @@ while(True):
   
     diff = cv2.absdiff(oldFrame, frame2)
     diff_gray = cv2.cvtColor(diff, cv2.COLOR_BGR2GRAY)
-    diff_blur = cv2.GaussianBlur(diff_gray, (10,10), 0)
+    diff_blur = cv2.GaussianBlur(diff_gray, (15,15), cv2.BORDER_DEFAULT)
     _, thresh_bin = cv2.threshold(diff_blur, 40, 255, cv2.THRESH_BINARY)
     oldFrame = frame2
 
